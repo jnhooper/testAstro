@@ -1,0 +1,23 @@
+---
+export interface Props {
+	title?: string
+	route?: string
+}
+
+const {
+  title = 'John Nissen-Hooper',
+  route
+} = Astro.props;
+---
+
+<ul>
+<slot/>
+</ul>
+<style>
+ul {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: repeat(auto-fill, 1fr); 
+}
+</style>
