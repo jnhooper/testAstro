@@ -22,7 +22,7 @@ export const resume: ResumeSchema = [
       shortTitle: 'Lead Engineer',
       startDate: new Date('March 2019'),
       accomplishments: [
-        'Pioneer the push towards accessibility on a company wide scale. Causing Newsela to be a leader in Accessibility in ed tech and driving legislation ensuring equitable learning tools for all students',
+        'Pioneer the push towards accessibility on a company wide scale. Causing Newsela to be a leader in accessibility in ed tech and driving legislation ensuring equitable learning tools for all students',
         'Introduce Typescript to the engineering org. This includes pitching to engineers as well as leadership, configuring our projects to use Typescript and continuously educating fellow engineers.',
         'Help grow the company to become a Unicorn',
         'Create and maintain a stand alone repo of react components, styles and hooks to serve as a Design System for the company.',
