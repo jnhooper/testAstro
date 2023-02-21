@@ -21,7 +21,13 @@ const marginClass = 'ml-3'
   <h4>
     <DateRange startDate={startDate} endDate={endDate}/>
   </h4>
-  <ul>
+  <ul
+    class:list={[
+    "flex",
+    "flex-col",
+    "gap-y-3"  
+    ]}
+  >
     {roles.map(role => (
       <Role role={role} liClasses={[marginClass]}/>
     ))}

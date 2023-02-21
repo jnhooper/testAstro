@@ -5,7 +5,11 @@ import Company from '@/components/cv/Company.astro';
 
 ---
 <Layout>
-  <ul>
+  <ul class:list={[
+    "flex",
+    "flex-col",
+    "gap-y-6"
+  ]}>
     {resume.map((company) => (
       <Company company={company}/>
     ))}
