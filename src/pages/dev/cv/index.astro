@@ -1,0 +1,13 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import {resume} from '@/data/resume';
+import Company from '@/components/cv/Company.astro';
+
+---
+<Layout>
+  <ul>
+    {resume.map((company) => (
+      <Company company={company}/>
+    ))}
+  </ul>
+</Layout>

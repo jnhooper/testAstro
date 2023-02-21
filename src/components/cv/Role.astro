@@ -1,0 +1,48 @@
+---
+import type {Role} from '@/data/resume';
+import DateRange from './DateRange.astro';
+
+interface Props {
+  role: Role,
+  liClasses?:string[]
+  classes?: string[]
+}
+const {
+  role:{
+    title,
+    startDate,
+    endDate,
+    accomplishments,
+  },
+liClasses = [],
+classes = []
+}= Astro.props;
+---
+<li class:list={[...liClasses,...classes]}>
+  <ul>
+    <li class:list={...liClasses}>
+      <h5>
+        <span class:list={['text-xl', 'font-semibold']}>
+          {title}
+        </span>
+        <DateRange startDate={startDate} endDate={endDate}/>
+      </h5>
+      <ul>
+        {accomplishments.map(accomplishment => (
+          <li
+            class:list={[
+              ...liClasses,
+              "list-disc",
+              "accomplishment"
+            ]}
+            >
+            {accomplishment}
+          </li>
+        ))}
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<style>
+</style>

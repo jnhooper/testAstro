@@ -1,0 +1,32 @@
+---
+import type {Company} from '@/data/resume';
+import DateRange from './DateRange.astro';
+import Role from './Role.astro';
+
+export interface Props {
+  company: Company
+}
+
+const {company} = Astro.props
+const {
+companyName,
+  startDate,
+  endDate,
+  roles
+} = company;
+const marginClass = 'ml-3'
+---
+<li class:list={[marginClass]}>
+  <h2 class="text-3xl">{companyName}</h2>
+  <h4>
+    <DateRange startDate={startDate} endDate={endDate}/>
+  </h4>
+  <ul>
+    {roles.map(role => (
+      <Role role={role} liClasses={[marginClass]}/>
+    ))}
+  </ul> 
+</li>
+
+<style>
+</style>

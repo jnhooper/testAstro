@@ -1,14 +1,16 @@
 ---
-interface SectionProps {
+interface Props {
   noun: string
 };
 
 const {noun} = Astro.props;
 ---
 
-<div>
+<div class='wrapper'>
   I am a {noun}
 </div>
 <style>
-  
+   .wrapper {
+    border: 1px solid red;
+   }
 </style>

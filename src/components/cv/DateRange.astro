@@ -1,0 +1,17 @@
+---
+import dayjs from 'dayjs'
+interface Props {
+  startDate: Date
+  endDate?: Date
+}
+const {
+  startDate,
+  endDate
+} = Astro.props;
+
+const format = 'MMM-YYYY'
+const renderdEndDate = ` - ${endDate ? dayjs(endDate).format(format) : 'current'}`;
+---
+<span>
+  {dayjs(startDate).format(format)}{renderdEndDate}
+</span>
