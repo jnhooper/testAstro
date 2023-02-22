@@ -15,8 +15,12 @@ companyName,
   roles
 } = company;
 const marginClass = 'ml-3'
+const companyAccentColor = '#37E2D5';
 ---
-<li class:list={[marginClass]}>
+<li class:list={[
+  marginClass,
+  "company"
+]}>
   <h2 class="text-3xl">{companyName}</h2>
   <h4>
     <DateRange startDate={startDate} endDate={endDate}/>
@@ -25,7 +29,7 @@ const marginClass = 'ml-3'
     class:list={[
     "flex",
     "flex-col",
-    "gap-y-3"  
+    "gap-y-3"
     ]}
   >
     {roles.map(role => (
@@ -34,5 +38,37 @@ const marginClass = 'ml-3'
   </ul> 
 </li>
 
-<style>
+<style
+  define:vars={{
+    companyAccentColor
+  }}
+>
+  .company{
+    position:relative; 
+    border-left: 1px solid var(--companyAccentColor);
+    position: relative;
+    padding-left: 1ch;
+    color:  
+   }
+  
+  .company::before{
+    content:"";
+    position: absolute;
+    top: 0;
+    height:2px;
+    width:1ch;
+    left:0;
+    display:block;
+    background-color: var(--companyAccentColor);
+  }
+  .company::after{
+    content:"";
+    position: absolute;
+    bottom: 0;
+    height:2px;
+    width:1ch;
+    left:0;
+    display:block;
+    background-color: var(--companyAccentColor); 
+  }
 </style>

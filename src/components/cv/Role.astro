@@ -17,10 +17,16 @@ const {
 liClasses = [],
 classes = []
 }= Astro.props;
+
+const accompAccentColor = '#C70A80'
+const roleAccentColor = '#fcd000'
 ---
 <li class:list={[...liClasses,...classes]}>
   <ul>
-    <li class:list={[...liClasses]}>
+    <li class:list={[
+      ...liClasses,
+      "role"
+      ]}>
       <h5>
         <span class:list={['text-xl', 'font-semibold']}>
           {title}
@@ -32,7 +38,6 @@ classes = []
           <li
             class:list={[
               ...liClasses,
-              "list-disc",
               "accomplishment"
             ]}
             >
@@ -44,5 +49,69 @@ classes = []
   </ul>
 </li>
 
-<style>
+<style define:vars={{
+  roleAccentColor,
+  accompAccentColor
+  }}>
+  .role{
+    border-left: 1px solid var(--roleAccentColor);
+    position: relative;
+    padding-left: 1ch;
+  }
+  .role::before{
+    content:"";
+    position: absolute;
+    top: 0;
+    height:2px;
+    width:1ch;
+    left:0;
+    display:block;
+    background-color: var(--roleAccentColor);
+  }
+  .role:last-child::after{
+    content:"";
+    position: absolute;
+    bottom: 0;
+    height:2px;
+    width:1ch;
+    left:0;
+    display:block;
+    background-color: var(--roleAccentColor); 
+  }
+
+  .accomplishment{
+    /* display: grid;
+    grid-template-columns: 0.5rem 1fr;
+    width: 100%;
+    align-items: center;
+    gap: 0.25rem; */
+    border-left: 2px solid var(--accompAccentColor);
+    position:relative;
+    padding-left: 1ch;
+  }
+  .accomplishment::before{
+    content:"";
+    position: absolute;
+    top: 0;
+    height:2px;
+    width:1ch;
+    left:0;
+    display:block;
+    background-color: var(--accompAccentColor);
+  }
+  .accomplishment:last-child::after{
+    content:"";
+    position: absolute;
+    bottom: 0;
+    height:2px;
+    width:1ch;
+    left:0;
+    display:block;
+    background-color: var(--accompAccentColor); 
+  }
+  .decorator{
+    background-color: var(--roleAccentColor);
+    height: 2px;
+    
+  }
 </style>
