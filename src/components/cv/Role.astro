@@ -18,8 +18,9 @@ liClasses = [],
 classes = []
 }= Astro.props;
 
-const accompAccentColor = '#C70A80'
-const roleAccentColor = '#fcd000'
+const accompAccentColor = '#C70A80';
+const roleAccentColor = '#fcd000';
+const tickWidth = '2ch';
 ---
 <li class:list={[...liClasses,...classes]}>
   <ul>
@@ -33,12 +34,12 @@ const roleAccentColor = '#fcd000'
         </span>
         <DateRange startDate={startDate} endDate={endDate}/>
       </h5>
-      <ul>
+      <ul class:list={["flex", "flex-col", "accomplishmentList", "space-y-3",...liClasses]}>
         {accomplishments.map(accomplishment => (
           <li
             class:list={[
               ...liClasses,
-              "accomplishment"
+              "accomplishment",
             ]}
             >
             {accomplishment}
@@ -51,19 +52,21 @@ const roleAccentColor = '#fcd000'
 
 <style define:vars={{
   roleAccentColor,
-  accompAccentColor
+  accompAccentColor,
+  tickWidth
   }}>
+
   .role{
     border-left: 1px solid var(--roleAccentColor);
     position: relative;
-    padding-left: 1ch;
+    padding-left: var(--tickWidth);
   }
   .role::before{
     content:"";
     position: absolute;
     top: 0;
     height:2px;
-    width:1ch;
+    width:var(--tickWidth);;
     left:0;
     display:block;
     background-color: var(--roleAccentColor);
@@ -73,29 +76,25 @@ const roleAccentColor = '#fcd000'
     position: absolute;
     bottom: 0;
     height:2px;
-    width:1ch;
+    width:var(--tickWidth);
     left:0;
     display:block;
     background-color: var(--roleAccentColor); 
   }
 
+  .accomplishmentList{
+    border-left: 2px solid var(--accompAccentColor); 
+  }
   .accomplishment{
-    /* display: grid;
-    grid-template-columns: 0.5rem 1fr;
-    width: 100%;
-    align-items: center;
-    gap: 0.25rem; */
-    border-left: 2px solid var(--accompAccentColor);
     position:relative;
-    padding-left: 1ch;
   }
   .accomplishment::before{
     content:"";
     position: absolute;
     top: 0;
     height:2px;
-    width:1ch;
-    left:0;
+    width:var(--tickWidth);
+    left:-0.75rem;
     display:block;
     background-color: var(--accompAccentColor);
   }
@@ -104,14 +103,10 @@ const roleAccentColor = '#fcd000'
     position: absolute;
     bottom: 0;
     height:2px;
-    width:1ch;
-    left:0;
+    width:var(--tickWidth);
+    /* offset the margin from tailwind */
+    left:-0.75rem;
     display:block;
     background-color: var(--accompAccentColor); 
-  }
-  .decorator{
-    background-color: var(--roleAccentColor);
-    height: 2px;
-    
   }
 </style>
