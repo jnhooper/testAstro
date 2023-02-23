@@ -34,7 +34,7 @@ const tickWidth = '2ch';
         </span>
         <DateRange startDate={startDate} endDate={endDate}/>
       </h5>
-      <ul class:list={["flex", "flex-col", "accomplishmentList", "space-y-3",...liClasses]}>
+      <ul class:list={["flex", "flex-col", "accomplishmentList",...liClasses]}>
         {accomplishments.map(accomplishment => (
           <li
             class:list={[
@@ -87,6 +87,8 @@ const tickWidth = '2ch';
   }
   .accomplishment{
     position:relative;
+    padding-top: 8px;
+    padding-bottom: 8px;
   }
   .accomplishment::before{
     content:"";
