@@ -3,14 +3,18 @@ interface Props {
   noun: string
 };
 
-const {noun} = Astro.props;
+const {noun, } = Astro.props;
 ---
 
-<div class='wrapper'>
+<div class:list={['wrapper',]}>
   I am a {noun}
+  <slot/>
 </div>
 <style>
-   .wrapper {
-    border: 1px solid red;
-   }
+  .wrapper{
+    padding-top:20px;
+		position: relative;
+     height: 100%; 
+    width:100%; 
+  }
 </style>

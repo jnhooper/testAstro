@@ -1,8 +1,15 @@
 ---
+interface Props {
+  classes?: string[]
+};
+
+const {
+  classes = []
+} = Astro.props
 
 ---
 
-<li>
+<li class:list={[...classes]}>
     <slot/>
 </li>
 <style>

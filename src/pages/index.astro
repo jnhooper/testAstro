@@ -6,27 +6,71 @@ import Card from '../components/Card.astro';
 import ListItem from'../components/ListItem.astro';
 import {Button} from '../components/Button';
 import sosiGlasses from '../assets/photos/sosi_glasses.jpg'
+import noisySVG from '../assets/svg/noisy.svg';
+import Hexagon from '@/components/Hexagon.astro';
+import HexGrid from '@/components/HexGrid.astro';
+
+const svgUrl = `url(${noisySVG})`
 ---
 
-<Layout>
+<Layout classes={["homePage"]}>
 	<HomeLayout >
-	<ListItem>
-		<Section noun='Dev'/>	
-		<a href="./dev/cv">go to dev</a>
-	</ListItem>	
-	<ListItem>
-		<Section noun='Dad'/>	
-	</ListItem>	
-	<ListItem>	
-		<Section noun='Photographer'/>	
-	</ListItem>
+    <ListItem>
+			<div class:list={['devSection']}>
+      	<div class:list={["gradientSvg"]}/>
+      <Section noun='Dev'>
+      	<div class:list={["devBody"]}>
+      <a href="./dev/cv">go to dev</a>
+</div>
+      </Section>
+			</div>
+    </ListItem>	
+    <ListItem>
+      <Section noun='Dad'/>	
+    </ListItem>	
+    <ListItem>	
+      <Section noun='Photographer'>
+      	<HexGrid>
+          <Hexagon imgSrc={sosiGlasses}/>
+				</HexGrid>
+			</Section>	
+    </ListItem>
 	</HomeLayout>
 </Layout>
 
-<style>
+<style lang="scss" define:vars={{
+	svgUrl
+}}>
+	html.homePage{
+		background-color: black;
+		color: white;
+	}
 	main {
 		margin: auto;
 	}
+	.devSection{
+		/* padding-top:20px; */
+		position:relative;
+		color:black;
+		width:100%;
+		height:100%;
+		.devBody{
+			background-color: #07ffff;
+			margin-top:0px;
+			height:100%;
+		}
+	}
+	.gradientSvg {
+		position: absolute;
+		top:-130px;
+		width: 100%;
+		height: 180px;
+		z-index: -1;
+		filter: contrast(270%) brightness(850%) invert(100%);;
+		background: 
+	linear-gradient(0deg, rgba(232,67,38,1), rgba(0,0,0,0)),
+	url("data:image/svg+xml,%3Csvg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.84' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
 	.text-gradient {
 		background-image: var(--accent-gradient);
 		-webkit-background-clip: text;

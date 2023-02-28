@@ -1,0 +1,61 @@
+---
+
+---
+
+<ul class="hexGrid">
+  <slot/>
+</ul>
+
+
+<style lang="scss">
+  .hexGrid {
+  display: grid;
+  grid-gap:10px;
+  grid-template-columns: repeat(8,1fr);
+  width: 90%;
+  height:100%;
+  margin: 0 auto;
+  overflow:hidden;
+}
+
+@media (min-width:1201px) { /* <- 5-4  hexagons per row */
+  .hexGrid{
+    padding-bottom: 4.4%;
+
+  :global(> li:nth-child(9n+6)){
+      grid-column-start: 2;
+    }
+  }
+}
+
+@media (max-width: 1200px) and (min-width:901px) { /* <- 4-3  hexagons per row */
+  .hexGrid{
+    grid-template-columns: repeat(8,1fr);
+    padding-bottom: 5.5%;
+    :global(> li:nth-child(7n+5)){ /* first hexagon of even rows */
+      grid-column-start: 2;
+    }
+  }
+}
+
+@media (max-width: 900px) and (min-width:601px) { /* <- 3-2  hexagons per row */
+  .hexGrid{
+    grid-template-columns: repeat(6,1fr);
+    padding-bottom: 7.4%;
+    :global(> li:nth-child(5n+4)){ /* first hexagon of even rows */
+      grid-column-start: 2;
+    }
+  }
+}
+
+@media (max-width: 600px) { /* <- 2-1  hexagons per row */
+.hexGrid{
+  grid-template-columns: repeat(4,1fr);
+  padding-bottom: 11.2%;
+  grid-gap:5px;
+  :global(> li:nth-child(3n+3)){ /* first hexagon of even rows */
+    grid-column-start: 2;
+  }
+}
+}
+</style>

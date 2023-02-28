@@ -2,16 +2,18 @@
 export interface Props {
 	title?: string
 	route?: string
+	classes?: string[]
 }
 
 const {
   title = 'John Nissen-Hooper',
+  classes =[],
   route
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class:list={[...classes]}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
