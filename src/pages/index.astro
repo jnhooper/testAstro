@@ -6,6 +6,7 @@ import Card from '../components/Card.astro';
 import ListItem from'../components/ListItem.astro';
 import {Button} from '../components/Button';
 import sosiGlasses from '../assets/photos/sosi_glasses.jpg'
+import bedHead from '../assets/photos/bed_head.PORTRAIT.jpg'
 import noisySVG from '../assets/svg/noisy.svg';
 import Hexagon from '@/components/Hexagon.astro';
 import HexGrid from '@/components/HexGrid.astro';
@@ -20,8 +21,8 @@ const svgUrl = `url(${noisySVG})`
       	<div class:list={["gradientSvg"]}/>
       <Section noun='Dev'>
       	<div class:list={["devBody"]}>
-      <a href="./dev/cv">go to dev</a>
-</div>
+          <a href="./dev/cv">go to dev</a>
+        </div>
       </Section>
 			</div>
     </ListItem>	
@@ -31,9 +32,13 @@ const svgUrl = `url(${noisySVG})`
     <ListItem>	
       <Section noun='Photographer'>
       	<HexGrid>
-          <Hexagon imgSrc={sosiGlasses}/>
+          <Hexagon imgSrc={sosiGlasses}>
+            612-741-1838
+          </Hexagon>
+          <Hexagon backgroundColor="purple"/>
+          <Hexagon imgSrc={bedHead}/>
 				</HexGrid>
-			</Section>	
+			</Section>
     </ListItem>
 	</HomeLayout>
 </Layout>
@@ -67,7 +72,7 @@ const svgUrl = `url(${noisySVG})`
 		height: 180px;
 		z-index: -1;
 		filter: contrast(270%) brightness(850%) invert(100%);;
-		background: 
+		background:
 	linear-gradient(0deg, rgba(232,67,38,1), rgba(0,0,0,0)),
 	url("data:image/svg+xml,%3Csvg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.84' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }

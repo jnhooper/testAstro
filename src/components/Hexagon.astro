@@ -4,24 +4,67 @@
  * https://github.com/web-tiki/responsive-grid-of-hexagons/tree/css-grid
  */
 
+ interface BaseProps {
+ href?: string
+ backgroundColor?: string
+ }
+ interface WithImage extends BaseProps{
+ imgSrc: string
+ imgAlt: string
+ }
+
+ interface WithoutImage extends BaseProps{
+ imgSrc?: never
+ imgAlt?: never
+ }
+
+ type Props = WithImage | WithoutImage;
  
  const {
    imgSrc,
-   imgAlt=""
+   imgAlt="",
+   href,
+   backgroundColor
   } = Astro.props;
 
+  console.log(backgroundColor)
 ---
 <li class="hex">
   <div class="hexIn">
-    <a class="hexLink" href="#">
+    {href ?
+    (
+    <a class="hexLink" href={href}>
       <img src={imgSrc} alt={imgAlt} />
-      <h1>This is a title</h1>
-      <p>Some sample text about the article this hexagon leads to</p>
+      <div class="slotWrapper">
+        <slot/>
+      </div>
     </a>
+    ) : (
+      <div class="hexLink">
+        <img src={imgSrc} alt={imgAlt} />
+        <div class="slotWrapper">
+          <slot/>
+        </div>
+      </div>
+    )
+    }
   </div>
 </li>
 
-<style>
+<style
+  define:vars={{
+    backgroundColor,
+  }}
+  lang="scss"
+>
+  .slotWrapper{
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .hex {
     grid-column-end: span 2;
     position: relative;
@@ -48,13 +91,14 @@
     outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
   }
   .hexLink {
-    display:block;
+    display:flex;
     width: 100%;
     height: 100%;
     text-align: center;
     color: #fff;
     overflow: hidden;
     transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+    background-color: var(--backgroundColor)
   }
   /*** HEX CONTENT **********************************************************************/
 .hex img {
