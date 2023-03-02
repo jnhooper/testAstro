@@ -9,6 +9,7 @@ import sosiGlasses from '../assets/photos/sosi_glasses.jpg'
 import bedHead from '../assets/photos/bed_head.PORTRAIT.jpg'
 import noisySVG from '../assets/svg/noisy.svg';
 import Hexagon from '@/components/Hexagon.astro';
+import ContactHex from '@/components/ContactHex/ContactHex.astro';
 import HexGrid from '@/components/HexGrid.astro';
 
 const svgUrl = `url(${noisySVG})`
@@ -32,11 +33,14 @@ const svgUrl = `url(${noisySVG})`
     <ListItem>	
       <Section noun='Photographer'>
       	<HexGrid>
-          <Hexagon imgSrc={sosiGlasses}>
-            612-741-1838
-          </Hexagon>
-          <Hexagon backgroundColor="purple"/>
+          <Hexagon imgSrc={sosiGlasses}/>
+          <ContactHex type="tel" href="612-741-1838">
+            call or text
+          </ContactHex>
           <Hexagon imgSrc={bedHead}/>
+          <ContactHex type="email" href="john.nissenhooper@gmail.com">
+            email me
+          </ContactHex>
 				</HexGrid>
 			</Section>
     </ListItem>
