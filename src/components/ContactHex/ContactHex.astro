@@ -26,15 +26,17 @@ type = 'other',
       <a class:list={['link']} href={formattedLink}>
         <slot/>
       </a>
-      <button class:list={['copy']}>        
+      <div  class:list={['copy']}>
+      <button>        
          copy
       </button>
+      </div>
   </hext-contact>
 </Hexagon>
 
 <script>
   import ContactHex from './ContactHex.ts';
-  customElements.define('hex-contact', HexContact);
+  customElements.define('hex-contact', ContactHex);
 </script>
 
 <style lang="scss">
@@ -63,6 +65,13 @@ type = 'other',
       margin-top: -15%;
       width: 120%;
       justify-self: center;
+      display: flex;
+      align-items:center;
+      justify-content:center;
+
+      button {
+        justify-self: center;
+      }
     }
   }
 </style>
