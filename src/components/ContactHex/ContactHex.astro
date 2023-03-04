@@ -1,5 +1,6 @@
 ---
 import Hexagon from '@/components/Hexagon.astro';
+import textSvg from '@/assets/svg/text.svg?raw'
 
 interface Props {
   href: string
@@ -23,8 +24,11 @@ type = 'other',
 ---
 <Hexagon>
   <hex-contact class:list={['wrapper']} data-href={href}>
-      <a class:list={['link']} href={formattedLink}>
-        <slot/>
+    <a class:list={['link', 'text-3xl']} href={formattedLink}>
+        <div class:list={['linkText']}>
+          <Fragment set:html={textSvg}/>
+          <slot/>
+        </div>
       </a>
       <div  class:list={['copy']}>
       <button>        
@@ -51,12 +55,61 @@ type = 'other',
       /*background: rgb(2,0,36);
       background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 56%, rgba(0,212,255,1) 100%); 
        */
-      background: radial-gradient(circle at 50% 140%, rgba(0,213,255,1) 25%, rgba(5,5,126,1) 73%, var(--darkBlue) 100%); 
+      --radialCenter: rgba(0,213,255,1);
+      --radientBackground: radial-gradient(circle at 50% 140%, var(--radialCenter) 25%, rgba(5,5,126,1) 73%, var(--darkBlue) 100%); 
+
+      background: white;
+      color: black;
       display: flex;
       height:100%;
       align-items:center;
       justify-content: center;
-      text-decoration: underline;
+      --iconWidth: 2rem;
+      --iconXMargin: 8px;
+      --iconSecondaryColor: #1982FC;
+      --iconPrimaryColor: currentColor;
+      /**
+       * move this to a utility class or something
+      */
+      &:hover, &:focus {
+        .linkText::before{
+          /* visibility: visible; */
+          transform: scaleY(1);
+          width: calc(100% - var(--iconXMargin));
+        }
+        :global(svg){
+          transition: all 0.3s ease-in-out 0s;
+          /*imessage blue*/
+          color: #1982FC;
+          /* color: var(--radialCenter) */
+        /* --iconPrimaryColor: var(--radialCenter); */
+        }
+      }
+      .linkText {
+        position: relative;
+        text-decoration: none;
+        display:flex;
+        &:hover,&:focus {
+          /* color: 'white',*/
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          width: calc(calc(100% - var(--iconWidth)) - calc(var(--iconXMargin) * 2));
+          height: 0.3rem;
+          bottom: 0;
+          right: 0;
+          background-color: currentColor;
+          /* visibility: hidden; */
+          transform: scaleY(0.5);
+          transition: all 0.3s ease-in-out 0s;
+        }
+      }
+      :global(svg) {
+        margin: 0 var(--iconXMargin);
+        width: var(--iconWidth);
+        height: var(--iconWidth);
+      }
     }
     .copy {
       --pink: rgb(216,0,255);
