@@ -47,11 +47,45 @@ const svgUrl = `url(${noisySVG})`
 	</HomeLayout>
 </Layout>
 
+<style is:global>
+  :root {
+    --root-backgroundColor: #191c1c;
+    --root-backgroundAccent: gray;
+    --root-popOne: #15d4d4;
+    --root-popTwo: #cfbcff;
+    /**
+     * blue yellow pink
+     **/
+    /* --root-backgroundColor: #072448; */
+    /* --root-accentOne: #54d2d2; */
+    /* --root-accentTwo: #f8aa4b; */
+    /* --root-popOne: #ffcb00; */
+    /* --root-popTwo: #ff6150; */
+
+    /* blue yellows */
+    /*
+    --root-backgroundColor: #1a1b4b;
+    --root-accentOne: #292a73;
+    --root-accentTwo: #3e4491;
+    --root-popOne: #3a9efd;
+    --root-popTwo: #f7a400;
+
+     */
+
+    /* --root-backgroundColor: #1f306e; */
+    /* --root-accentOne: #553772; */
+    /* --root-accentTwo: #8f3b76; */
+    /* --root-popOne: #c7417b; */
+    /* --root-popTwo: #f5487f; */
+
+  }
+</style>
 <style lang="scss" define:vars={{
 	svgUrl
 }}>
 	html.homePage{
-		background-color: black;
+		/* background-color: black; */
+    background-color: var(--root-backgroundColor);
 		color: white;
 	}
 	main {
@@ -60,11 +94,11 @@ const svgUrl = `url(${noisySVG})`
 	.devSection{
 		/* padding-top:20px; */
 		position:relative;
-		color:black;
+		/* color:black; */
 		width:100%;
 		height:100%;
 		.devBody{
-			background-color: #07ffff;
+			/* background-color: #07ffff; */
 			margin-top:0px;
 			height:100%;
 		}
@@ -76,9 +110,9 @@ const svgUrl = `url(${noisySVG})`
 		height: 180px;
 		z-index: -1;
 		filter: contrast(270%) brightness(850%) invert(100%);;
-		background:
-	linear-gradient(0deg, rgba(232,67,38,1), rgba(0,0,0,0)),
-	url("data:image/svg+xml,%3Csvg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.84' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+		/* background: */
+	/* linear-gradient(0deg, rgba(232,67,38,1), rgba(0,0,0,0)), */
+	/* url("data:image/svg+xml,%3Csvg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.84' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
 }
 	.text-gradient {
 		background-image: var(--accent-gradient);

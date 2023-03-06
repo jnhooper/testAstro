@@ -21,8 +21,19 @@ type = 'other',
     break;
   }
 
+  const linkBG = '#191c1c'
+  const linkText = 'var(--root-popTwo)'
+  const linkTextShift = 'var(--root-popOne)';
+  const buttonBG = 'var(--root-popOne)'
+  const buttonText = '#003737'
+  const buttonBorder = 'var(--root-popTwo)'
+  const svgColor = 'var(--root-backgroundColor)'
+  const svgColorShift = 'var(--root-popOne)';
+  const svgAccent = 'white'
+  const underlineColor = 'var(--root-popTwo)';
+  const underlineColorShift = 'var(--root-popOne)';
 ---
-<Hexagon>
+<Hexagon isOutlined>
   <hex-contact class:list={['wrapper']} data-href={href}>
     <a class:list={['link', 'text-3xl']} href={formattedLink}>
         <div class:list={['linkText']}>
@@ -30,7 +41,7 @@ type = 'other',
           <slot/>
         </div>
       </a>
-      <div  class:list={['copy']}>
+      <div  class:list={['copy', 'text-2xl']}>
       <button>        
          copy
       </button>
@@ -43,7 +54,22 @@ type = 'other',
   customElements.define('hex-contact', ContactHex);
 </script>
 
-<style lang="scss">
+<style
+  lang="scss"
+  define:vars={{
+      linkBG,
+      linkText,
+      linkTextShift,
+      buttonBG,
+      buttonText,
+      buttonBorder,
+      svgColor,
+      svgColorShift,
+      svgAccent,
+      underlineColor,
+      underlineColorShift,
+  }}
+>
   .wrapper {
     width: 100%;
     height: 100%;
@@ -58,29 +84,34 @@ type = 'other',
       --radialCenter: rgba(0,213,255,1);
       --radientBackground: radial-gradient(circle at 50% 140%, var(--radialCenter) 25%, rgba(5,5,126,1) 73%, var(--darkBlue) 100%); 
 
-      background: white;
-      color: black;
+      background: var(--linkBG);
+      color: var(--linkText);
       display: flex;
       height:100%;
       align-items:center;
       justify-content: center;
       --iconWidth: 2rem;
       --iconXMargin: 8px;
-      --iconSecondaryColor: #1982FC;
+      /* --iconSecondaryColor: #1982FC; */
+      --iconSecondaryColor: var(--svgAccent);
+      /*needs to be currentColor for the shift*/
       --iconPrimaryColor: currentColor;
       /**
        * move this to a utility class or something
       */
       &:hover, &:focus {
+        color: var(--linkTextShift);
         .linkText::before{
           /* visibility: visible; */
           transform: scaleY(1);
           width: calc(100% - var(--iconXMargin));
+          background-color: var(--underlineColorShift);
         }
         :global(svg){
           transition: all 0.3s ease-in-out 0s;
           /*imessage blue*/
-          color: #1982FC;
+          /* color: #1982FC; */
+          color: var(--svgColorShift);
           /* color: var(--radialCenter) */
         /* --iconPrimaryColor: var(--radialCenter); */
         }
@@ -99,7 +130,7 @@ type = 'other',
           height: 0.3rem;
           bottom: 0;
           right: 0;
-          background-color: currentColor;
+          background-color: var(--underlineColor);
           /* visibility: hidden; */
           transform: scaleY(0.5);
           transition: all 0.3s ease-in-out 0s;
@@ -113,8 +144,11 @@ type = 'other',
     }
     .copy {
       --pink: rgb(216,0,255);
-      border-top: 4px solid var(--pink);
-      background:radial-gradient(farthest-corner at 50% 160%,var(--darkBlue) 55%, #230390  70%,var(--pink) 100%) ; 
+      border-top: 4px solid var(--hexBorderColor);
+      /* border-top: 4px solid var(--root-popOne); */
+      /* background:radial-gradient(farthest-corner at 50% 160%,var(--darkBlue) 55%, #230390  70%,var(--pink) 100%) ;  */
+      background-color: var(--buttonBG);
+      color: var(--buttonText);
       border-radius: 100%;
       margin-top: -15%;
       width: 120%;

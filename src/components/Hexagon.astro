@@ -24,8 +24,12 @@
    imgSrc,
    imgAlt="",
    href,
-   backgroundColor
+   backgroundColor,
+   isOutlined = false,
   } = Astro.props;
+
+  const outlineColor  = isOutlined ? 'var(--root-popOne)': 'transparent' ;
+  const outlineSize = isOutlined ? '4px' : '1px';
 
 ---
 <li class="hex">
@@ -53,6 +57,8 @@
 <style
   define:vars={{
     backgroundColor,
+    outlineColor,
+    outlineSize
   }}
   lang="scss"
 >
@@ -68,7 +74,12 @@
     grid-column-end: span 2;
     position: relative;
     visibility:hidden;
+    overflow:hidden;
     outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    padding: var(--outlineSize);
+    :global(*){
+      --hexBorderColor: var(--outlineColor)
+    }
   }
   .hex::after{
     content:'';
@@ -77,17 +88,19 @@
   }
   .hexIn{
     position: absolute;
-    width:100%;
+    width:calc(100% - 8px);
     padding-bottom: 115.470%; /* =  width / sin(60) */
     overflow: hidden;
-    visibility: hidden;
-    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    visibility: visible;
+    outline:var(--outlineSize) solid var(--outlineColor); /* fix for jagged edges in FF on hover transition */
+    /* outline:1px solid transparent; [> fix for jagged edges in FF on hover transition <] */
     transform: rotate3d(0,0,1,-60deg) skewY(30deg);
   }
-  .hexIn * {
+  .hexIn > * {
     position: absolute;
     visibility: visible;
-    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    /* outline:1px solid transparent; [> fix for jagged edges in FF on hover transition <] */
+    outline:var(--outlineSize) solid var(--outlineColor);
   }
   .hexLink {
     display:flex;
@@ -97,10 +110,11 @@
     color: #fff;
     overflow: hidden;
     transform: skewY(-30deg) rotate3d(0,0,1,60deg);
-    background-color: var(--backgroundColor)
+    background-color: var(--backgroundColor);
   }
   /*** HEX CONTENT **********************************************************************/
 .hex img {
+  position: absolute;
   left: -100%;
   right: -100%;
   /* width: auto;
