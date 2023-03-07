@@ -34,6 +34,7 @@
 ---
 <li class="hex">
   <div class="hexIn">
+    <div class="outline">
     {href ?
     (
     <a class="hexLink" href={href}>
@@ -51,6 +52,7 @@
       </div>
     )
     }
+    </div>
   </div>
 </li>
 
@@ -74,7 +76,7 @@
     grid-column-end: span 2;
     position: relative;
     visibility:hidden;
-    overflow:hidden;
+    /* overflow:hidden; */
     outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
     padding: var(--outlineSize);
     :global(*){
@@ -87,16 +89,47 @@
     padding-bottom: 86.602%;  /* =  100 / tan(60) * 1.5 */
   }
   .hexIn{
+    .outline {
+      /*top left*/
+      &:before{
+        content:"";
+        position: absolute;
+        top:0;
+        right:0;
+        width:50%;
+        height:var(--outlineSize);
+        background-color: var(--outlineColor);
+        z-index:1;
+        visibility: visible;
+      }
+      /*top right*/
+      &:after{
+        content:"";
+        position: absolute;
+        top: var(--outlineSize);
+        right:0;
+        height:50%;
+        width:4px;
+        background-color: var(--outlineColor);
+        visibility: visible;
+        z-index:1;
+      }
+    }
+    --width: calc(100% - calc(var(--outlineSize) * 2));
     position: absolute;
-    width:calc(100% - 8px);
-    padding-bottom: 115.470%; /* =  width / sin(60) */
+    width: var(--width);
+  /* [> =  width / sin(60) <] */
+    padding-bottom: 115.470%; 
+    /* padding-bottom: calc(var(--width) / sin(60)); */
     overflow: hidden;
-    visibility: visible;
-    outline:var(--outlineSize) solid var(--outlineColor); /* fix for jagged edges in FF on hover transition */
+    visibility: hidden;
+    /* visibility: hidden; */
+    /* outline:var(--outlineSize) solid var(--outlineColor);  */
+    outline: 1px solid transparent;
     /* outline:1px solid transparent; [> fix for jagged edges in FF on hover transition <] */
     transform: rotate3d(0,0,1,-60deg) skewY(30deg);
   }
-  .hexIn > * {
+  .hexIn .outline > * {
     position: absolute;
     visibility: visible;
     /* outline:1px solid transparent; [> fix for jagged edges in FF on hover transition <] */
