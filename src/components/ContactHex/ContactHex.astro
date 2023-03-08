@@ -5,10 +5,12 @@ import textSvg from '@/assets/svg/text.svg?raw'
 interface Props {
   href: string
   type?: 'tel' | 'email'| 'other'
+  text: string
 }
 const {
 href,
 type = 'other',
+text
   } = Astro.props;
 
   let formattedLink = href;
@@ -36,9 +38,11 @@ type = 'other',
 <Hexagon isOutlined>
   <hex-contact class:list={['wrapper']} data-href={href}>
     <a class:list={['link', 'text-3xl']} href={formattedLink}>
-        <div class:list={['linkText']}>
+        <div class:list={['svgText']}>
           <Fragment set:html={textSvg}/>
-          <slot/>
+          <div class:list={['text']}>
+            {text}
+          </div>
         </div>
       </a>
       <div  class:list={['copy', 'text-2xl']}>
@@ -90,9 +94,9 @@ type = 'other',
       height:100%;
       align-items:center;
       justify-content: center;
-      --iconWidth: 2rem;
+      /* necessary for container query below */
+      container-type: inline-size;
       --iconXMargin: 8px;
-      /* --iconSecondaryColor: #1982FC; */
       --iconSecondaryColor: var(--svgAccent);
       /*needs to be currentColor for the shift*/
       --iconPrimaryColor: currentColor;
@@ -100,44 +104,60 @@ type = 'other',
        * move this to a utility class or something
       */
       &:hover, &:focus {
-        color: var(--linkTextShift);
-        .linkText::before{
-          /* visibility: visible; */
-          transform: scaleY(1);
-          width: calc(100% - var(--iconXMargin));
-          background-color: var(--underlineColorShift);
-        }
-        :global(svg){
-          transition: all 0.3s ease-in-out 0s;
-          /*imessage blue*/
-          /* color: #1982FC; */
-          color: var(--svgColorShift);
-          /* color: var(--radialCenter) */
-        /* --iconPrimaryColor: var(--radialCenter); */
+        .svgText{
+          color: var(--linkTextShift);
+          .text::before {
+            width: calc(100% - var(--iconWidth));
+            @container (min-width: 210px){ 
+              width: calc(calc(100% + calc(2 * var(--iconXMargin))) + var(--iconWidth));
+            }
+            transform: scaleY(1);
+            background-color: var(--underlineColorShift);
+          }
+          :global(svg){
+            transition: all 0.3s ease-in-out 0s;
+            color: var(--svgColorShift);
+            /* color: var(--radialCenter) */
+          /* --iconPrimaryColor: var(--radialCenter); */
+          }
         }
       }
-      .linkText {
+      .svgText {
         position: relative;
         text-decoration: none;
         display:flex;
-        &:hover,&:focus {
-          /* color: 'white',*/
+        flex-direction: column-reverse;
+        align-items: center;
+        gap:var(--iconXMargin);
+        --iconWidth: 1.5rem;
+        .text{
+          position:relative;
+          display: flex;
+          justify-content: center;
+          &::before {
+            width:60%;
+            bottom: -4px;
+            content: "";
+            position: absolute;
+            height: 0.3rem;
+            /* right: 0; */
+            background-color: var(--underlineColor);
+            transform: scaleY(0.5);
+            transition: all 0.3s ease-in-out 0s;
+          }
         }
-        &::before {
-          content: "";
-          position: absolute;
-          width: calc(calc(100% - var(--iconWidth)) - calc(var(--iconXMargin) * 2));
-          height: 0.3rem;
-          bottom: 0;
-          right: 0;
-          background-color: var(--underlineColor);
-          /* visibility: hidden; */
-          transform: scaleY(0.5);
-          transition: all 0.3s ease-in-out 0s;
+        @container (min-width: 210px){
+          --iconWidth: 2rem;
+          flex-direction: row;
+          .text::before{
+            /* width: calc(calc(100% - var(--iconWidth)) - calc(var(--iconXMargin) * 2)); */
+            width: 100%;
+            right:0
+          }
         }
       }
       :global(svg) {
-        margin: 0 var(--iconXMargin);
+        margin: 0 var(--iconXMargin) 0 0;
         width: var(--iconWidth);
         height: var(--iconWidth);
       }
@@ -157,6 +177,7 @@ type = 'other',
       align-items:center;
       justify-content:center;
       cursor: pointer;
+      z-index:1;
 
       button {
         justify-self: center;
