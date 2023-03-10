@@ -2,6 +2,11 @@ class HexContact extends HTMLElement {
   constructor(){
     super();
 
+    //props passed in
+    const href = this.dataset.href as string;
+    //can't do camel case on these
+    const hoverColor = this.dataset.hovercolor as string;
+    console.log(this.dataset)
     const hexParent = this.closest('li')
     const ogColorVarName = '--outlineColor';
     const ogColor = hexParent ? hexParent.style.getPropertyValue(ogColorVarName) : ''
@@ -9,7 +14,6 @@ class HexContact extends HTMLElement {
     const copyButton = this.querySelector('button');
     // because of some dumb bug in chrome this needs to have a div wrapped around it
     const buttonWrapper = this.querySelector('.copy');
-    const href = this.dataset.href as string;
     const copyToCLipboard:EventListener = async (e) =>{
       e.stopPropagation();
       try{
@@ -21,7 +25,7 @@ class HexContact extends HTMLElement {
     
     const setParentCSSValue: EventListener = () => {
       if(hexParent){
-        hexParent.style.setProperty(ogColorVarName, 'red');
+        hexParent.style.setProperty(ogColorVarName, hoverColor);
       }
     }
 

@@ -11,7 +11,7 @@
         <use xlink:href="#mail-a"/>
       </mask>
       <use fill="#D8D8D8" xlink:href="#mail-a"/>
-      <g fill="#FFA0A0" mask="url(#mail-b)">
+      <g fill="var(--iconSecondaryColor, #FFA0A0)" mask="url(#mail-b)">
         <rect width="24" height="24" transform="translate(-2 -4)"/>
       </g>
     </g>
@@ -19,7 +19,7 @@
       <use xlink:href="#mail-c"/>
     </mask>
     <use fill="#000000" fill-rule="nonzero" xlink:href="#mail-c"/>
-    <g fill="#7600FF" mask="url(#mail-d)">
+    <g fill="var(--iconPrimaryColor, #7600FF)" mask="url(#mail-d)">
       <rect width="24" height="24" transform="translate(-1 -3)"/>
     </g>
   </g>

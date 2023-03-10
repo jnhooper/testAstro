@@ -1,6 +1,7 @@
 ---
 import Hexagon from '@/components/Hexagon.astro';
 import textSvg from '@/assets/svg/text.svg?raw'
+import emailSvg from '@/assets/svg/email.svg?raw'
 
 interface Props {
   href: string
@@ -14,12 +15,14 @@ text
   } = Astro.props;
 
   let formattedLink = href;
+  let svg = textSvg;
   switch(type){
     case 'tel':
       formattedLink = `tel:${href}`
       break;
     case 'email':
-    formattedLink = `mailto:${href}`
+      formattedLink = `mailto:${href}`
+      svg = emailSvg;
     break;
   }
 
@@ -36,10 +39,14 @@ text
   const underlineColorShift = 'var(--root-popOne)';
 ---
 <Hexagon isOutlined>
-  <hex-contact class:list={['wrapper']} data-href={href}>
+  <hex-contact
+      class:list={['wrapper']}
+      data-href={href} 
+      data-hovercolor={'var(--root-popTwo)'}
+    >
     <a class:list={['link', 'text-3xl']} href={formattedLink}>
         <div class:list={['svgText']}>
-          <Fragment set:html={textSvg}/>
+          <Fragment set:html={svg}/>
           <div class:list={['text']}>
             {text}
           </div>
@@ -79,6 +86,7 @@ text
     height: 100%;
     display: grid;
     grid-template-rows: 1fr 25%;
+    container-type: inline-size;
     --darkBlue:rgba(2,0,36,1);
 
     .link {
@@ -95,7 +103,6 @@ text
       align-items:center;
       justify-content: center;
       /* necessary for container query below */
-      container-type: inline-size;
       --iconXMargin: 8px;
       --iconSecondaryColor: var(--svgAccent);
       /*needs to be currentColor for the shift*/
@@ -115,7 +122,7 @@ text
             background-color: var(--underlineColorShift);
           }
           :global(svg){
-            transition: all 0.3s ease-in-out 0s;
+            transition: var(--root-transition);
             color: var(--svgColorShift);
             /* color: var(--radialCenter) */
           /* --iconPrimaryColor: var(--radialCenter); */
@@ -143,7 +150,7 @@ text
             /* right: 0; */
             background-color: var(--underlineColor);
             transform: scaleY(0.5);
-            transition: all 0.3s ease-in-out 0s;
+            transition: var(--root-transition);
           }
         }
         @container (min-width: 210px){
@@ -174,10 +181,16 @@ text
       width: 120%;
       justify-self: center;
       display: flex;
-      align-items:center;
       justify-content:center;
       cursor: pointer;
       z-index:1;
+      transition: var(--root-transition);
+      align-items:flex-start;
+      padding-top: 8px;
+      @container (min-width: 210px){
+        align-items:center;
+        padding-top:0
+      }
 
       button {
         justify-self: center;
