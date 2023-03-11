@@ -34,13 +34,27 @@ class HexContact extends HTMLElement {
         hexParent.style.setProperty(ogColorVarName, ogColor);
       }
     }
+
+    const scale:EventListener = () =>{
+      if(hexParent){
+        console.log('hovered')
+        hexParent.setAttribute('data-scale', "true")
+      }
+    }
+    const deScale:EventListener = () =>{
+      if(hexParent){
+        hexParent.setAttribute('data-scale', "false")
+      }
+    }
+
     copyButton?.addEventListener('click', copyToCLipboard)
     buttonWrapper?.addEventListener('click', copyToCLipboard)
     copyButton?.addEventListener('focus', setParentCSSValue)
     copyButton?.addEventListener('blur', resetParentCSSValue)
     buttonWrapper?.addEventListener('mouseenter', setParentCSSValue)
     buttonWrapper?.addEventListener('mouseleave', resetParentCSSValue)
-
+    this.addEventListener('mouseenter', scale)
+    this.addEventListener('mouseleave', deScale)
   }
 }
 export default HexContact;

@@ -75,6 +75,12 @@
   }
 
   .hex {
+    &[data-scale="true"]{
+      z-index: 1;
+      transform: scale(1.25);
+    }
+    z-index:0;
+    transition: var(--root-transition);
     grid-column-end: span 2;
     position: relative;
     visibility:hidden;
