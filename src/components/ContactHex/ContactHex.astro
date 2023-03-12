@@ -26,23 +26,26 @@ text
     break;
   }
 
+  // var(--root-popOne)#fcd000
   const linkBG = '#191c1c'
   const linkText = 'var(--root-popTwo)'
-  const linkTextShift = 'var(--root-popOne)';
+  const linkTextShift = '#ffafd0';
   const buttonBG = 'var(--outlineColor)'
   const buttonText = '#003737'
+  const buttonTextShift= '#ffd8e6'
   const buttonBorder = 'var(--root-popTwo)'
   const svgColor = 'var(--root-backgroundColor)'
-  const svgColorShift = 'var(--root-popOne)';
+  const svgColorShift = '#ffafd0';
   const svgAccent = 'white'
   const underlineColor = 'var(--root-popTwo)';
-  const underlineColorShift = 'var(--root-popOne)';
+  const underlineColorShift = '#fcd000';
 ---
 <Hexagon isOutlined>
   <hex-contact
       class:list={['wrapper']}
       data-href={href} 
-      data-hovercolor={'#9023c7'}
+      /* data-hovercolor={'#9023c7'} */
+      data-hovercolor={'#8b0058'}
     >
     <a class:list={['link', 'text-3xl']} href={formattedLink}>
         <div class:list={['svgText']}>
@@ -73,6 +76,7 @@ text
       linkTextShift,
       buttonBG,
       buttonText,
+      buttonTextShift,
       buttonBorder,
       svgColor,
       svgColorShift,
@@ -122,6 +126,7 @@ text
             background-color: var(--underlineColorShift);
           }
           :global(svg){
+            --iconSecondaryColor: var(--underlineColorShift);
             transition: var(--root-transition);
             color: var(--svgColorShift);
             /* color: var(--radialCenter) */
@@ -190,6 +195,9 @@ text
       @container (min-width: 210px){
         align-items:center;
         padding-top:0
+      }
+      &:hover, &:focus-within{
+        color: #ffd8e6;
       }
 
       button {
