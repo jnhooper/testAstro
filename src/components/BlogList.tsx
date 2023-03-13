@@ -16,7 +16,7 @@ const BlogList = ({blogs}: BlogListProps) => {
     <ul className={classes}>
       {blogs.map((blog) => (
         <li>
-          <a href={`./blog/${blog.slug}`}>
+          <a href={`blog/${blog.slug}`}>
           {blog.data.title}
           </a>
         </li>
