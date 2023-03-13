@@ -5,7 +5,8 @@ export const collections = {
   'dev': defineCollection({
     schema: z.object({
       title: z.string(),
-      date: z.date()
+      publishDate: z.date(),
+      url: z.string().url().optional()
     })
   })
 }

@@ -1,0 +1,32 @@
+---
+import {getCollection, getEntryBySlug} from 'astro:content';
+import BlogList from '@/components/BlogList';
+
+const devBlogs = await getCollection('dev');
+---
+<div
+  class:list={[
+   'container',
+   'mx-auto',
+   'wrapper' ]}
+>
+  {
+    devBlogs ?
+      <BlogList blogs={devBlogs}/>
+    : null
+  }
+</div>
+
+<style lang="scss">
+  .wrapper{
+    :global(h2){
+      font-weight: bold;
+      font-size: 3rem;
+    }
+    :global(p){
+      margin: 8px 0;
+      
+    }
+  }
+</style>
+---

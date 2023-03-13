@@ -1,6 +1,7 @@
 ---
-date: 2017-12-11
+publishDate: 2017-12-11
 title: Basic Google Oauth with FeatherJS
+url: https://medium.com/@john.nissenhooper/basic-google-oauth-with-featherjs-567a247251a8
 ---
 
 ## Basic Google Oauth with FeatherJS
@@ -10,26 +11,6 @@ After a lot of looking around the internet for a good example/tutorial on how to
 This is going to assume you are using the Feathers CLI. We’re first going to run `feathers generate authentication` fill out your appropriate fields, personally I used the defaults opting to include google, facebook, local and github with a NeDB database.
 
 That will generate a new directory inside your services dir called `users`, another one called `models` which contains a `users.model.js`, and a file named `authentication.js`. First thing we’re going to do is go into `authentication.js`. which should look similar to this
-
-```markdown
----
-title: Markdown Page!
-lang: en
-layout: ~/layouts/MainLayout.astro
----
-
-# Markdown example
-
-This is a fully-featured page, written in Markdown!
-
-## Section A
-
-Lorem ipsum dolor sit amet, **consectetur adipiscing elit**. Sed ut tortor _suscipit_, posuere ante id, vulputate urna. Pellentesque molestie aliquam dui sagittis aliquet. Sed sed felis convallis, lacinia lorem sit amet, fermentum ex. Etiam hendrerit mauris at elementum egestas. Vivamus id gravida ante. Praesent consectetur fermentum turpis, quis blandit tortor feugiat in. Aliquam erat volutpat. In elementum purus et tristique ornare. Suspendisse sollicitudin dignissim est a ultrices. Pellentesque sed ipsum finibus, condimentum metus eget, sagittis elit. Sed id lorem justo. Vivamus in sem ac mi molestie ornare.
-
-## Section B
-
-Nam quam dolor, pellentesque sed odio euismod, feugiat tempus tellus. Quisque arcu velit, ultricies in faucibus sed, ultrices ac enim. Nunc eget dictum est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ex nisi, egestas mollis ultricies ut, laoreet suscipit libero. Nam condimentum molestie turpis. Sed vestibulum sagittis congue. Maecenas tristique enim et tincidunt tempor. Curabitur ac scelerisque nulla, in malesuada libero. Praesent eu tempus odio. Pellentesque aliquam ullamcorper quam at gravida. Sed non fringilla mauris. Aenean sit amet ultrices erat. Vestibulum congue venenatis tortor, nec suscipit tortor. Aenean pellentesque mauris eget tortor tincidunt pharetra.
-```
 
 
 

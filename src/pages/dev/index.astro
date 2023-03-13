@@ -9,4 +9,25 @@ console.log(entry);
 const {Content} = await entry.render();
 // IMPORTANT. DO NOT PUT CONTENT IN THIS LAYOUT. THE 100VH FUCKS IT UPJJ:We
 ---
+<div class:list={[
+     'container',
+     'mx-auto',
+     'text-xl',
+     'leading-relaxed',
+     'wrapper' ]}>
   <Content/>
+</div>
+
+<style lang="scss">
+  .wrapper{
+    :global(h2){
+      font-weight: bold;
+      font-size: 3rem;
+
+    }
+    :global(p){
+      margin: 8px 0;
+      
+    }
+  }
+</style>
