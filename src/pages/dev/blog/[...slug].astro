@@ -10,6 +10,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
+<meta charset="UTF-8" /> o
 <div
   class:list={[
    'container',
