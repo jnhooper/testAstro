@@ -25,6 +25,9 @@ The CDC says that [61
 million](https://www.cdc.gov/ncbddd/disabilityandhealth/infographic-disability-impacts-all.html)
 adults in the United States live with a disability. That’s 26 percent.
 
+![An info-graphic of the United states with outlines of blue and yellow people filling in the
+map](https://miro.medium.com/v2/resize:fit:1400/1*MolxD3BbtpkFXpjNB0gwnQ.png)
+
 Oooof that’s a lot of people. But I’m sure your website will be so wildly successfully viral that
 you can afford to just write off 26 percent of the population…right?
 
