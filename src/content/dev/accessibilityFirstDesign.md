@@ -60,6 +60,9 @@ The aha moment that really drove home the importance of a11y for me was from the
 deck](https://www.productplan.com/glossary/technical-debt/) making the point that disability can be
 _temporary_ **_and/or_** _situational._ That’s right! You can make this about _you_!
 
+![three stick figures with only one usable arm above a line moving from permanent to situational](
+https://miro.medium.com/v2/resize:fit:1400/1*_5OLTg6LM3AioqAq5zOtpA.png )
+
 In the image above (again taken from that fantastic [Microsoft
 presentation](https://www.productplan.com/glossary/technical-debt/)) we have 3 people with the
 disability of having one usable arm. On the left we have the permanent, missing an arm, then the
@@ -72,6 +75,9 @@ impairment (hopefully more to the right of that scale above). So if you can’t 
 and develop for a11y for the ethical, moral, or legal arguments above do it for the selfish reason
 that someday, you too will find the fact that you can’t navigate your site via keyboard, or at
 increased zoom level, or with a screen reader **_incredibly_** annoying.
+
+![a grid of stick figures demonstrating how different disabilities can vary from permanent to
+temporary](https://miro.medium.com/v2/resize:fit:1400/1*jRa5H4h6KwSezwkCxB2p8Q.png)
 
 psst: sneaky bonus reason to do a11y first design. Usually prioritizing a11y helps make your designs
 more simplified and less… overly extravagant, leading to not only a simpler design but one that
