@@ -1,20 +1,31 @@
 ---
-import {getCollection, getEntryBySlug} from 'astro:content';
-import BlogList from '@/components/BlogList';
-
+import {getCollection} from 'astro:content';
 const devBlogs = await getCollection('dev');
 ---
 <div
   class:list={[
    'container',
    'mx-auto',
-   'wrapper' ]}
+   'wrapper' 
+  ]}
 >
-  {
-    devBlogs ?
-      <BlogList blogs={devBlogs}/>
-    : null
-  }
+  <ul 
+    class:list={[   
+      'text-xl',
+      'leading-relaxed',
+    ]}
+  >
+    {
+      devBlogs.map(blogPostEntry => (
+        <li>
+          <a href={`blog/${blogPostEntry.slug}`}>{blogPostEntry.data.title}</a>
+          <time datetime={blogPostEntry.data.publishDate.toISOString()}>
+            {blogPostEntry.data.publishDate.toDateString()}
+          </time>
+        </li>
+      ))
+    }
+  </ul>
 </div>
 
 <style lang="scss">
