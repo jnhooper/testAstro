@@ -72,6 +72,7 @@ const negativeSkew = `-${techSkew}deg`
                   <ParallelLi href="./dev/cv">And a lot more!</ParallelLi> 
                 </ParallelUl>
               </section>
+              <br/>
               Want to learn more?
             <a href="./dev/cv">
                 Check out my Resume
@@ -163,31 +164,6 @@ const negativeSkew = `-${techSkew}deg`
 	main {
 		margin: auto;
 	}
-.techListWrapper{
-  display: grid;
-  width: calc(100% - 24px);
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 8px; 
-  margin: 8px;
-  &.knowTech{
-    --skewDiv: var(--positiveSkew);
-    --skewBorder: var(--negativeSkew);
-  }
-  &.loveTech {
-    --skewDiv: var(--negativeSkew);
-    --skewBorder: var(--positiveSkew);
-  }
-  li {
-    border: 2px solid var(--root-popTwo);
-    padding: 4px;
-    div {
-      transform: skew(var(--skewDiv));
-      display: flex;
-      place-content: center;
-    }
-    transform: skew(var(--skewBorder));
-  }
-}
 	.devSection{
 		/* padding-top:20px; */
 		position:relative;
