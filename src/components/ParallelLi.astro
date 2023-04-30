@@ -1,0 +1,60 @@
+---
+interface Props {
+  href?: string;
+  skewText?: string;
+  skewBorder?: string;
+}
+  const {
+    href,
+    skewText = '30deg',
+    skewBorder = '-30deg'
+  } = Astro.props;
+
+const Wrapper = href ? 'a' : 'div';
+const border = '2px solid var(--root-popTwo)'
+const borderBottom = href ?
+  '2px solid var(--root-popOne)' :  border;
+
+const wrapperProps = href ? {
+  href: href
+} : {}
+---
+
+<li data-isLink={`${!!href}`}>
+  <Wrapper {...wrapperProps}>
+    <slot />
+  </Wrapper>
+</li>
+
+<style
+  lang="scss"
+  define:vars={{
+    skewText, 
+    skewBorder, 
+    border,
+    borderBottom
+  }}
+>
+  li { 
+    border: var(--border);
+    border-radius: 6px;
+    padding: 4px;
+    border-bottom: var(--borderBottom);
+    position:relative;
+    >* {
+      /* vars come from parallelUl */
+      transform: skew(var(--wrapperSkew));
+      display: flex;
+      place-content: center;
+    }
+    transform: skew(var(--contentSkew));
+  }
+
+  li[data-isLink="true"]{
+    &:hover, &:focus-within{
+      transition: var(--root-transition);
+      border-bottom-width: 4px;
+      margin-bottom: -4px;
+    }
+}
+</style>

@@ -1,0 +1,36 @@
+---
+interface Props {
+  skew?: number 
+  direction?: 'left' | 'right'
+}
+const {
+  skew = 30,
+  direction = 'left'
+} = Astro.props;
+  const isLeft = direction ==='left';
+let wrapperSkew = `${skew}deg`;
+let contentSkew  = `${skew}deg`
+if(isLeft){
+  wrapperSkew = `-${wrapperSkew}`
+} else {
+  contentSkew = `-${contentSkew}`
+}
+---
+<ul class:list={["wrapper"]}>
+  <slot/>
+</ul>
+<style
+  lang="scss"
+  define:vars={{
+    contentSkew,
+    wrapperSkew
+  }}
+>
+.wrapper{
+  display: grid;
+  width: calc(100% - 28px);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px; 
+  margin: 8px;
+}
+</style>

@@ -7,7 +7,9 @@ const {noun, } = Astro.props;
 ---
 
 <div class:list={['wrapper',]}>
-  I am {noun}
+  <h2 class:list={["text-5xl"]}>
+    I am {noun}
+  </h2>
   <slot/>
 </div>
 <style>
@@ -16,5 +18,8 @@ const {noun, } = Astro.props;
 		position: relative;
      height: 100%; 
     width:100%; 
+  }
+  h2 {
+    margin: 12px 0;   
   }
 </style>

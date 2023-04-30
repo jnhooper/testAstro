@@ -3,62 +3,116 @@ import HomeLayout from '../layouts/Home.astro';
 import Layout from '../layouts/Layout.astro';
 import Section from'../components/Section.astro';
 import ListItem from'../components/ListItem.astro';
+import ParallelLi from '@/components/ParallelLi.astro';
 import sosiGlasses from '../assets/photos/sosi_glasses.jpg'
 import bedHead from '../assets/photos/bed_head.PORTRAIT.jpg'
 import noisySVG from '../assets/svg/noisy.svg';
 import Hexagon from '@/components/Hexagon.astro';
 import ContactHex from '@/components/ContactHex/ContactHex.astro';
 import HexGrid from '@/components/HexGrid.astro';
+import ParallelUl from '@/components/ParallelUl.astro';
 
 const svgUrl = `url(${noisySVG})`
+const techSkew = 30;
+const positiveSkew = `${techSkew}deg`
+const negativeSkew = `-${techSkew}deg`
 ---
 
 <Layout classes={["homePage"]}>
-	<HomeLayout >
-    <ListItem>
-			<div class:list={['devSection']}>
-      	<div class:list={["gradientSvg"]}/>
-      <Section noun='a Dev'>
-      	<div class:list={["devBody"]}>
-          <a href="./dev/cv">
-              Check out my Resume
-          </a>
-            <br/>
-          <a href="./dev/blog">
-            Obligatory blog posts
-          </a>
+  <div class:list={["text-xl"]}>
+    <HomeLayout >
+      <ListItem>
+        <div class:list={['devSection',]}>
+          <div class:list={["gradientSvg"]}/>
+        <Section noun='a Dev'>
+          <div class:list={["devBody"]}>
+              <p>
+                Currently a team lead focused on <b>accessibility</b> and <em>Design Systems</em>, I have
+                10+ years of fullstack experience in the industry, with a majority
+                of that time in EdTech and healthcare startups. I also have two bachelors
+                degrees, (CS and Italian Studies. Feel free to quiz me on Italian cinema
+                from the 1950-60's).
+              </p>
+              <br/>
+              <section>
+                <h4 class:list={["text-3xl"]}> Tech I love</h4>
+                <ParallelUl>
+                  <ParallelLi>Typescript</ParallelLi> 
+                  <ParallelLi>React</ParallelLi> 
+                  <ParallelLi>Graphql</ParallelLi> 
+                  <ParallelLi
+                    href="https://storybook.js.org/"
+                  >
+                    Storybook
+                  </ParallelLi> 
+                  <ParallelLi
+                    href="https://redwoodjs.com/"
+                  >
+                    Redwood.js
+                  </ParallelLi> 
+                  <ParallelLi>neovim</ParallelLi> 
+                  <ParallelLi
+                    href="https://amzn.github.io/style-dictionary/#/"
+                  >
+                    StyleDictionary
+                  </ParallelLi> 
+                  <ParallelLi href="./dev/cv">And more!</ParallelLi> 
+                </ParallelUl>
+              </section>
+              <br/>
+              <section>
+                <h4 class:list={["text-2xl"]}>Tech I know</h4>
+                <ParallelUl direction='right'>
+                  <ParallelLi>Webpack</ParallelLi> 
+                  <ParallelLi>Python</ParallelLi> 
+                  <ParallelLi>Django</ParallelLi> 
+                  <ParallelLi>Ruby</ParallelLi> 
+                  <ParallelLi>Ruby on Rails</ParallelLi> 
+                  <ParallelLi>SQL</ParallelLi> 
+                  <ParallelLi href="./dev/cv">And a lot more!</ParallelLi> 
+                </ParallelUl>
+              </section>
+              Want to learn more?
+            <a href="./dev/cv">
+                Check out my Resume
+            </a>
+              <br/>
+            <a href="./dev/blog">
+              Obligatory blog posts
+            </a>
+          </div>
+        </Section>
         </div>
-      </Section>
-			</div>
-    </ListItem>	
-    <ListItem>
-      <Section noun='a Dad'/>	
-    </ListItem>	
-    <ListItem>	
-      <Section noun='around'>
-      	<HexGrid>
-          <Hexagon
-            imgSrc={sosiGlasses}
-            imgAlt="baby wearing sunglasses, sitting in father's lap"
-          />
-          <ContactHex
-            type="tel"
-            href="612-741-1838"
-            text="call or text"
+      </ListItem>	
+      <ListItem>
+        <Section noun='a Dad'/>	
+      </ListItem>	
+      <ListItem>	
+        <Section noun='around'>
+          <HexGrid>
+            <Hexagon
+              imgSrc={sosiGlasses}
+              imgAlt="baby wearing sunglasses, sitting in father's lap"
             />
-          <Hexagon 
-            imgSrc={bedHead}
-            imgAlt="Fatehr and daughter both have bed head and look confussed"
-          />
-          <ContactHex
-            type="email"
-            href="john.nissenhooper@gmail.com"
-            text="email me"
-          />
-				</HexGrid>
-			</Section>
-    </ListItem>
-	</HomeLayout>
+            <ContactHex
+              type="tel"
+              href="612-741-1838"
+              text="call or text"
+              />
+            <Hexagon 
+              imgSrc={bedHead}
+              imgAlt="Fatehr and daughter both have bed head and look confussed"
+            />
+            <ContactHex
+              type="email"
+              href="john.nissenhooper@gmail.com"
+              text="email me"
+            />
+          </HexGrid>
+        </Section>
+      </ListItem>
+    </HomeLayout>
+    </div>
 </Layout>
 
 <style is:global>
@@ -97,7 +151,9 @@ const svgUrl = `url(${noisySVG})`
   }
 </style>
 <style lang="scss" define:vars={{
-	svgUrl
+	svgUrl,
+  positiveSkew, 
+  negativeSkew, 
 }}>
 	html.homePage{
 		/* background-color: black; */
@@ -107,6 +163,31 @@ const svgUrl = `url(${noisySVG})`
 	main {
 		margin: auto;
 	}
+.techListWrapper{
+  display: grid;
+  width: calc(100% - 24px);
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px; 
+  margin: 8px;
+  &.knowTech{
+    --skewDiv: var(--positiveSkew);
+    --skewBorder: var(--negativeSkew);
+  }
+  &.loveTech {
+    --skewDiv: var(--negativeSkew);
+    --skewBorder: var(--positiveSkew);
+  }
+  li {
+    border: 2px solid var(--root-popTwo);
+    padding: 4px;
+    div {
+      transform: skew(var(--skewDiv));
+      display: flex;
+      place-content: center;
+    }
+    transform: skew(var(--skewBorder));
+  }
+}
 	.devSection{
 		/* padding-top:20px; */
 		position:relative;
@@ -118,24 +199,6 @@ const svgUrl = `url(${noisySVG})`
 			margin-top:0px;
 			height:100%;
 		}
-	}
-	.gradientSvg {
-		position: absolute;
-		top:-130px;
-		width: 100%;
-		height: 180px;
-		z-index: -1;
-		filter: contrast(270%) brightness(850%) invert(100%);;
-		/* background: */
-	/* linear-gradient(0deg, rgba(232,67,38,1), rgba(0,0,0,0)), */
-	/* url("data:image/svg+xml,%3Csvg viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.84' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); */
-}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
 	}
 	.instructions {
 		line-height: 1.6;
