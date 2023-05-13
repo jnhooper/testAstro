@@ -1,11 +1,12 @@
 ---
 import Hexagon from '@/components/Hexagon.astro';
-import textSvg from '@/assets/svg/text.svg?raw'
-import emailSvg from '@/assets/svg/email.svg?raw'
+import textSvg from '@/assets/svg/text.svg?raw';
+import emailSvg from '@/assets/svg/email.svg?raw';
+import linkedInSvg from '@/assets/svg/user.svg?raw';
 
 interface Props {
   href: string
-  type?: 'tel' | 'email'| 'other'
+  type?: 'tel' | 'email'| 'linkedIn' | 'other'
   text: string
 }
 const {
@@ -23,7 +24,9 @@ text
     case 'email':
       formattedLink = `mailto:${href}`
       svg = emailSvg;
-    break;
+      break;
+    case 'linkedIn':
+      svg = linkedInSvg;
   }
 
   // var(--root-popOne)#fcd000
