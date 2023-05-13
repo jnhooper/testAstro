@@ -5,6 +5,8 @@ import Section from'../components/Section.astro';
 import ListItem from'../components/ListItem.astro';
 import ParallelLi from '@/components/ParallelLi.astro';
 import sosiGlasses from '../assets/photos/sosi_glasses.jpg'
+import christmasJump from '../assets/photos/christmas_jump.jpg';
+import catBox from '../assets/photos/catBox.jpg';
 import bedHead from '../assets/photos/bed_head.PORTRAIT.jpg'
 import noisySVG from '../assets/svg/noisy.svg';
 import Hexagon from '@/components/Hexagon.astro';
@@ -134,6 +136,20 @@ const negativeSkew = `-${techSkew}deg`
               type="email"
               href="john.nissenhooper@gmail.com"
               text="email me"
+            />
+            <Hexagon
+              imgSrc={christmasJump}
+              imgAlt="Man in sunglasses with smiling woman and baby"
+            />
+            <ContactHex
+              type="linkedIn"
+              href="https://www.linkedin.com/in/nissenhooper/"
+              text="LinkedIn"
+            />
+            <Hexagon
+              imgSrc={catBox}
+              position={'bottom'}
+              imgAlt="A man, woman and child smiling in front of a statue of a cat with a takeout box on it's head"
             />
           </HexGrid>
         </Section>

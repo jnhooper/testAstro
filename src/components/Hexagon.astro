@@ -10,30 +10,34 @@
     isOutlined?: boolean
  }
  interface WithImage extends BaseProps{
-   imgSrc: string
-   imgAlt: string
+  imgSrc: string
+  imgAlt: string
+  position?: 'top' | 'bottom' 
  }
 
- interface WithoutImage extends BaseProps{
-   imgSrc?: never
-   imgAlt?: never
- }
+interface WithoutImage extends BaseProps{
+  imgSrc?: never
+  imgAlt?: never
+  position?: never
+}
 
  type Props = WithImage | WithoutImage;
  
  const {
-   imgSrc,
-   imgAlt="",
-   href,
-   backgroundColor,
-   isOutlined = false,
-  } = Astro.props;
+  imgSrc,
+  imgAlt="",
+  href,
+  backgroundColor,
+  isOutlined = false,
+  position = 'top'
+} = Astro.props;
 
   const outlineColor  = isOutlined ? 'var(--root-popOne)': 'transparent' ;
   const outlineSize = isOutlined ? '4px' : '1px';
 
 const Wrapper = href ? 'a' : 'div'
 const wrapperProps = href ? {href} : {}
+const bottom = position === 'top' ? 'unset' : '0'
 ---
 <li class="hex">
   <div class="hexIn">
@@ -57,7 +61,8 @@ const wrapperProps = href ? {href} : {}
   define:vars={{
     backgroundColor,
     outlineColor,
-    outlineSize
+    outlineSize,
+    bottom
   }}
   lang="scss"
 >
@@ -170,6 +175,7 @@ const wrapperProps = href ? {href} : {}
   right: -100%;
   margin: 0 auto;
   transform: rotate3d(0,0,0,0deg);
+  bottom: var(--bottom)
 }
   
 </style>
