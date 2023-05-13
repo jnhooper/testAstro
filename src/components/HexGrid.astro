@@ -18,17 +18,7 @@
   /* overflow:hidden; */
 }
 
-@media (min-width:1201px) { /* <- 5-4  hexagons per row */
-  .hexGrid{
-    padding-bottom: 4.4%;
-
-  :global(> li:nth-child(9n+6)){
-      grid-column-start: 2;
-    }
-  }
-}
-
-@media (max-width: 1200px) and (min-width:901px) { /* <- 4-3  hexagons per row */
+@media (min-width:901px) { /* <- 4-3  hexagons per row */
   .hexGrid{
     grid-template-columns: repeat(8,1fr);
     padding-bottom: 5.5%;
