@@ -1,0 +1,20 @@
+.punchline {
+  display: grid;
+  grid-template-rows: 0fr; 
+  overflow: hidden;
+  transition: grid-template-rows 1s;
+  .punchlineReveal{
+    min-height:0;
+    transition: var(--root-transition);
+    visibility: hidden;
+  }
+  
+  &.visible{
+    grid-template-rows: 1fr;
+    .punchlineReveal {
+      visibility:visible;
+    }
+   
+  }
+  
+}

@@ -8,6 +8,7 @@ import sosiGlasses from '../assets/photos/sosi_glasses.jpg'
 import bedHead from '../assets/photos/bed_head.PORTRAIT.jpg'
 import noisySVG from '../assets/svg/noisy.svg';
 import Hexagon from '@/components/Hexagon.astro';
+import Joke from '@/components/Joke';
 import ContactHex from '@/components/ContactHex/ContactHex.astro';
 import HexGrid from '@/components/HexGrid.astro';
 import ParallelUl from '@/components/ParallelUl.astro';
@@ -25,11 +26,16 @@ const negativeSkew = `-${techSkew}deg`
         <div class:list={['devSection',]}>
           <div class:list={["gradientSvg"]}/>
         <Section noun='a Dev'>
-          <div class:list={["devBody"]}>
+          <div class:list={["devBody", "leading-relaxed"]}>
               <p>
                 Currently a team lead focused on <b>accessibility</b> and <em>Design Systems</em>, I have
                 10+ years of fullstack experience in the industry, with a majority
-                of that time in EdTech and healthcare startups. I also have two bachelors
+                of that time in EdTech and healthcare startups.
+                I have a passion for teaching (and learning) and love getting things pixel perfect.
+                The last 4 years has been a mix of building a Design system from the ground up, maintainging
+                a component library repo (coding, managing releases, planning, deploying etc), and educating
+                fellow engineers on best practices and accessibility first desgin.
+                I also have two bachelors
                 degrees, (CS and Italian Studies. Feel free to quiz me on Italian cinema
                 from the 1950-60's).
               </p>
@@ -39,7 +45,11 @@ const negativeSkew = `-${techSkew}deg`
                 <ParallelUl>
                   <ParallelLi>Typescript</ParallelLi> 
                   <ParallelLi>React</ParallelLi> 
+                  <ParallelLi>Redux</ParallelLi> 
+                  <ParallelLi>Next</ParallelLi> 
                   <ParallelLi>Graphql</ParallelLi> 
+                  <ParallelLi>Node</ParallelLi> 
+                  <ParallelLi>Docker</ParallelLi> 
                   <ParallelLi
                     href="https://storybook.js.org/"
                   >
@@ -50,6 +60,8 @@ const negativeSkew = `-${techSkew}deg`
                   >
                     Redwood.js
                   </ParallelLi> 
+                  <ParallelLi>Astro</ParallelLi> 
+                  <ParallelLi>HTML & CSS</ParallelLi> 
                   <ParallelLi>neovim</ParallelLi> 
                   <ParallelLi
                     href="https://amzn.github.io/style-dictionary/#/"
@@ -68,25 +80,39 @@ const negativeSkew = `-${techSkew}deg`
                   <ParallelLi>Django</ParallelLi> 
                   <ParallelLi>Ruby</ParallelLi> 
                   <ParallelLi>Ruby on Rails</ParallelLi> 
+                  <ParallelLi>Ocaml</ParallelLi> 
                   <ParallelLi>SQL</ParallelLi> 
                   <ParallelLi href="./dev/cv">And a lot more!</ParallelLi> 
                 </ParallelUl>
               </section>
               <br/>
-              Want to learn more?
-            <a href="./dev/cv">
-                Check out my Resume
-            </a>
-              <br/>
-            <a href="./dev/blog">
-              Obligatory blog posts
-            </a>
+              <div>
+                <h4 class:list={["text-3xl"]}>Want to learn more?</h4>
+                <a
+                  href="./dev/cv"
+                  class="standardLink"
+                >
+                    Check out my <span class="highlight">Resume</span>
+                </a>
+                <br/>
+                <a
+                  href="./dev/blog"
+                  class="standardLink"
+                >
+                  I also write about tech stuff <span class="highlight">sometimes</span>
+                </a>
+              </div>
           </div>
         </Section>
         </div>
       </ListItem>	
       <ListItem>
-        <Section noun='a Dad'/>	
+        <Section noun='a Dad'>
+          <Joke
+            client:visible
+            setup="hey"
+            punchline="there"/>
+        </Section>
       </ListItem>	
       <ListItem>	
         <Section noun='around'>
@@ -176,6 +202,46 @@ const negativeSkew = `-${techSkew}deg`
 			height:100%;
 		}
 	}
+
+  .standardLink {
+    position: relative;
+    display: inline-block;
+    --spacing: 8px;
+    padding: var(--spacing) 0;
+    &::before {
+      position: absolute;
+      content:"";
+      width: 0%;
+      height:2px;
+      background-color: var(--root-popTwo);
+      bottom: 0;
+      right: 0;
+      transition: var(--root-transition);
+    }
+    &:hover,&:focus{
+      &::before {
+        width: 100%;
+      }
+      .highlight::before{
+        opacity:0;
+      }
+    }
+    .highlight {
+      position:relative;
+      &::before {
+        position: absolute;
+        content:"";
+        width: 100% ;
+        height:2px;
+        background-color: var(--root-popOne);
+        bottom: calc(calc(0px - var(--spacing)) - 2px);
+        right:0;
+        opacity:1;
+        transition: var(--root-transition);
+      }
+    }
+  }
+
 	.instructions {
 		line-height: 1.6;
 		margin: 1rem 0;

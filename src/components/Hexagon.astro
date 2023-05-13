@@ -5,17 +5,18 @@
  */
 
  interface BaseProps {
- href?: string
- backgroundColor?: string
+    href?: string
+    backgroundColor?: string
+    isOutlined?: boolean
  }
  interface WithImage extends BaseProps{
- imgSrc: string
- imgAlt: string
+   imgSrc: string
+   imgAlt: string
  }
 
  interface WithoutImage extends BaseProps{
- imgSrc?: never
- imgAlt?: never
+   imgSrc?: never
+   imgAlt?: never
  }
 
  type Props = WithImage | WithoutImage;
@@ -31,26 +32,20 @@
   const outlineColor  = isOutlined ? 'var(--root-popOne)': 'transparent' ;
   const outlineSize = isOutlined ? '4px' : '1px';
 
+const Wrapper = href ? 'a' : 'div'
+const wrapperProps = href ? {href} : {}
 ---
 <li class="hex">
   <div class="hexIn">
-    {href ?
-      (
-      <a class="hexLink" href={href}>
+    <Wrapper
+      class="hexLink"
+      {...wrapperProps}
+    > 
         <img src={imgSrc} alt={imgAlt} />
         <div class="slotWrapper">
           <slot/>
         </div>
-      </a>
-      ) : (
-        <div class="hexLink">
-          <img src={imgSrc} alt={imgAlt} />
-          <div class="slotWrapper">
-            <slot/>
-          </div>
-        </div>
-      )
-      }
+    </Wrapper>
     { isOutlined ? (
       <div class:list={["outline","top"]}/>
       <div class:list={["outline","bot"]}/>
