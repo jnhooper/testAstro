@@ -5,7 +5,6 @@ import {getCollection, getEntryBySlug} from 'astro:content';
 const devBlogs = await getCollection('dev');
 const slug = devBlogs[0].slug;
 const entry = await getEntryBySlug('dev', devBlogs[0].slug)
-console.log(entry);
 const {Content} = await entry.render();
 // IMPORTANT. DO NOT PUT CONTENT IN THIS LAYOUT. THE 100VH FUCKS IT UPJJ:We
 ---

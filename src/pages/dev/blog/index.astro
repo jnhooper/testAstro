@@ -21,10 +21,14 @@ const devBlogs = await getCollection('dev');
     {
       devBlogs.map(blogPostEntry => (
         <li>
-          <a href={blogPostEntry.slug}>{blogPostEntry.data.title}</a>
-          <time datetime={blogPostEntry.data.publishDate.toISOString()}>
-            {blogPostEntry.data.publishDate.toDateString()}
-          </time>
+          <a href={blogPostEntry.slug}>
+            <h2 class:list={['text-3xl']}>
+              {blogPostEntry.data.title}
+            </h2>
+            <time datetime={blogPostEntry.data.publishDate.toISOString()}>
+              {blogPostEntry.data.publishDate.toDateString()}
+            </time>
+          </a>
         </li>
       ))
     }
@@ -35,7 +39,7 @@ const devBlogs = await getCollection('dev');
   .wrapper{
     :global(h2){
       font-weight: bold;
-      font-size: 3rem;
+      /* font-size: 2rem; */
     }
     :global(p){
       margin: 8px 0;
